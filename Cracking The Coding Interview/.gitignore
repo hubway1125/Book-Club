@@ -1,0 +1,18 @@
+# Intellij
+.idea
+*.iml
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Mac
+.DS_Store
+
+# Java
+*/target
+target/
+*.class
+.factorypath
