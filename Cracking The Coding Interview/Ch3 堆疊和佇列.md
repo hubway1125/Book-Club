@@ -101,4 +101,117 @@
    
 8. 注意事項：
    9. 更新第一個和最後一個節點時常會出錯，要多檢查。
-   10. 經常使用佇列的時機是：寬度優先搜尋(BFS)、實作快取。
+   10. 經常使用佇列的時機是：寬度優先搜尋(Breadth-First Search, BFS)、實作快取。
+
+
+## 堆疊練習題： 
+### [#150 Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
+1. 直覺：
+```java
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<String> stack = new Stack<>();
+        
+        for (String el : tokens) {
+            if (isOperator(el)) {
+                String numB = stack.pop();
+                String numA = stack.pop();
+                stack.push(calculate(numA, el, numB));
+            } else {
+                stack.push(el);
+            }
+        }
+        
+        return Integer.parseInt(stack.pop());
+    }
+    
+    private boolean isOperator(String el) {
+        return Arrays.asList("+", "-", "*", "/").contains(el);
+    }
+    
+    private String calculate(String numA, String operator, String numB) {
+        switch(operator) {
+            case "+":
+                return String.valueOf(Integer.parseInt(numA) + Integer.parseInt(numB));
+            case "-":
+                return String.valueOf(Integer.parseInt(numA) - Integer.parseInt(numB));
+            case "*":
+                return String.valueOf(Integer.parseInt(numA) * Integer.parseInt(numB));
+            case "/":
+                return String.valueOf(Integer.parseInt(numA) / Integer.parseInt(numB));
+            default:
+                return null;
+        }
+    }
+}
+```
+
+2. 優化：
+```java
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stack = new Stack<>();
+        
+        for (String t : tokens) {
+            switch(t) {
+                case"+":
+                    stack.push(stack.pop() + stack.pop());
+                    break;
+                case"-":
+                    stack.push(-stack.pop() + stack.pop());
+                    break;
+                case"*":
+                    stack.push(stack.pop() * stack.pop());
+                    break;
+                case"/":
+                    int a = stack.pop(), b= stack.pop();
+                    stack.push(b / a);
+                    break;
+                default:
+                    stack.push(Integer.parseInt(t));
+                    break;
+            }
+        }
+        
+        return stack.pop();
+    }   
+    
+}
+```
+
+## 佇列練習題：
+### [#1475 Final Prices With a Special Discount in a Shop](https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/)
+1. 直覺：
+```java
+class Solution {
+   public int[] finalPrices(int[] prices) {
+      int[] result = new int[prices.length];
+
+      for (int i = 0; i < prices.length; i++) {
+         result[i] = prices[i];
+         for (int j = i+1; j < prices.length; j++) {
+            if (prices[j] <= prices[i]) {
+               result[i] = prices[i] - prices[j];
+               break;
+            }
+         }
+      }
+      return result;
+   }
+}
+```
+
+2. 優化：
+```java
+class Solution {
+   public int[] finalPrices(int[] prices) {
+      Stack<Integer> stack = new Stack<>();
+      for (int i = 0; i < prices.length; i++) {
+         while (!stack.isEmpty() && prices[stack.peek()] >= prices[i])
+            prices[stack.pop()] -= prices[i];
+         stack.push(i);
+      }
+      return prices;
+   }
+}
+```
