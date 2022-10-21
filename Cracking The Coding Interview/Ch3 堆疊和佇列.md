@@ -1,5 +1,5 @@
-# Chapter 3 堆疊和佇列
-## 堆疊
+# Chapter 3 堆疊和佇列 Stack and Queue
+## 堆疊 Stack
 1. 後進先出 (Last In First Out, LIFO)
 2. 操作：
    1. pop() : 取出並刪除最頂端的項目
@@ -43,8 +43,10 @@
             }
         }
     ```
+5. 注意事項：
+   1. 經常使用堆疊的時機是：遞迴。
    
-## 佇列
+## 佇列 Queue
 1. 先進先出 (First In First Out, FIFO)
 2. 操作：
    1. add(item) : 在最尾端添加一個項目
@@ -99,7 +101,7 @@
     }
    ```
    
-4. 注意事項：
+5. 注意事項：
    1. 更新第一個和最後一個節點時常會出錯，要多檢查。
    2. 經常使用佇列的時機是：寬度優先搜尋(Breadth-First Search, BFS)、實作快取。
 
