@@ -247,3 +247,19 @@ class Solution {
     }
 }
 ```
+
+### 補充：
+
+#### Stack
+![](images/Stack.png)
+
+#### Queue
+![](images/Queue.png)
+
+#### BFS
+![](images/BFS-1.png)
+![](images/BFS-2.png)
+
+#### DFS
+![](images/DFS-1.png)
+![](images/DFS-2.png)
