@@ -48,7 +48,7 @@
    延伸閱讀: [分別利用 Array 與 LinkedList 實作 Stack](https://chikuwa-tech-study.blogspot.com/2021/05/java-stack.html)
 
 5. 注意事項：
-    1. 經常使用堆疊的時機是：遞迴。
+    1. 經常使用堆疊的時機是：深度優先搜尋(Depth-First Search, DFS)、遞迴。
 
 ## 佇列 Queue
 
@@ -121,15 +121,16 @@
 
 ![](images/java_collection_uml.png)
 
-1. 因為 Stack 繼承了 Vector，所以 Vector 能用的方法，Stack 都能用。這導致了 Stack 是可以做出超越自己該做的事情。
-2. Vector 與 ArrayList 的差異在於 Vector 是 thread-safe。Vector 暴力的在每個方法掛上 `synchronized`
+1. Stack 本質上是一個 List。
+2. 因為 Stack 繼承了 Vector， Vector 又實作了 List Interface，所以 List 和 Vector 能用的方法，Stack 都能用。這導致了 Stack 是可以做出超越自己該做的事情。
+3. Vector 與 ArrayList 的差異在於 Vector 是 thread-safe。Vector 暴力的在每個方法掛上 `synchronized`
    關鍵字來處理多執行緒議題，導致在單執行緒的環境下，效能輸給 ArrayList，於是現在幾乎沒有人在用。若是有使用 Vector
    的需求，也可以用 `Collections.synchronizedList()`來替代。
-3. Queue 的實作有 ArrayQueue 與 LinkedList。
+4. Queue 的實作有 ArrayQueue 與 LinkedList。
 
 ## 堆疊練習題：
 
-### 1. 資料結構 [#150 Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
+### [#150 Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
 
 1. 直覺：
 
@@ -208,7 +209,7 @@ class Solution {
 
 ## 佇列練習題：
 
-### 1. 資料結構 [#1475 Final Prices With a Special Discount in a Shop](https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/)
+### [#1475 Final Prices With a Special Discount in a Shop](https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/)
 
 1. 直覺：
 
