@@ -86,7 +86,7 @@
                 last.next = t;
             }
             last = t;
-            if (first != null) {
+            if (first == null) {
                 first = last;
             }
         }
@@ -122,11 +122,12 @@
 ![](images/java_collection_uml.png)
 
 1. Stack 本質上是一個 List。
-2. 因為 Stack 繼承了 Vector， Vector 又實作了 List Interface，所以 List 和 Vector 能用的方法，Stack 都能用。這導致了 Stack 是可以做出超越自己該做的事情。
+2. 因為 Stack 繼承了 Vector， Vector 又實作了 List Interface，所以 List 和 Vector 能用的方法，Stack 都能用。這導致了 Stack
+   是可以做出超越自己該做的事情。所以也有人建議用 LinkedList 來實作你的 Stack。
 3. Vector 與 ArrayList 的差異在於 Vector 是 thread-safe。Vector 暴力的在每個方法掛上 `synchronized`
    關鍵字來處理多執行緒議題，導致在單執行緒的環境下，效能輸給 ArrayList，於是現在幾乎沒有人在用。若是有使用 Vector
    的需求，也可以用 `Collections.synchronizedList()`來替代。
-4. Queue 的實作有 ArrayQueue 與 LinkedList。
+4. Queue 的實作有 ArrayQueue 與 LinkedList，分別基於 Array 與 List。
 
 ## 堆疊練習題：
 
@@ -239,7 +240,7 @@ class Solution {
     public int[] finalPrices(int[] prices) {
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < prices.length; i++) {
-            while (!stack.isEmpty() && prices[stack.peek()] >= prices[i])
+            while (!stack.isEmpty() && prices[stack.peek()] >= prices[i]) // 找到了距離最近的比較小的數
                 prices[stack.pop()] -= prices[i];
             stack.push(i);
         }
@@ -251,15 +252,19 @@ class Solution {
 ### 補充：
 
 #### Stack
+
 ![](images/Stack.png)
 
 #### Queue
+
 ![](images/Queue.png)
 
 #### BFS
+
 ![](images/BFS-1.png)
 ![](images/BFS-2.png)
 
 #### DFS
+
 ![](images/DFS-1.png)
 ![](images/DFS-2.png)
