@@ -9,10 +9,10 @@
 4. 沒有循環的圖，稱為無環圖。
 
 ## 圖的常見表示方法
-### 鄰接表
-// TODO
-### 鄰接矩陣
-// TODO
+### 鄰接表 與 鄰接矩陣
+https://blog.csdn.net/qq_29134495/article/details/51376580
+https://www.youtube.com/watch?v=lTr4dXNz0HI
+
 
 ## 搜尋法(以樹為例，圖只要再加上紀錄已探訪就好)
 ### 廣度優先搜尋 BFS
